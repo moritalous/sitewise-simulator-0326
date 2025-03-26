@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional, Union
 from asyncua import Server, ua
 from asyncua.common.node import Node
 
-from src.data_generator import DataGenerator
+from data_generator import DataGenerator
 
 
 class OpcUaServer:
@@ -28,8 +28,6 @@ class OpcUaServer:
         
         # サーバーの設定
         self.server = Server()
-        self.server.set_endpoint(self.server_config["endpoint"])
-        self.server.set_server_name(self.server_config["name"])
         
         # 名前空間の設定
         self.uri = self.server_config["uri"]
@@ -46,6 +44,11 @@ class OpcUaServer:
         
     async def init(self):
         """サーバーの初期化"""
+        # サーバーの初期化
+        await self.server.init()
+        self.server.set_endpoint(self.server_config["endpoint"])
+        self.server.set_server_name(self.server_config["name"])
+        
         # 名前空間の登録
         self.idx = await self.server.register_namespace(self.uri)
         
@@ -142,18 +145,22 @@ class OpcUaServer:
     
     async def start(self):
         """サーバーの起動"""
-        await self.init()
-        
-        # サーバーの起動
-        async with self.server:
-            self.logger.info(f"サーバーを起動しました: {self.server_config['endpoint']}")
+        try:
+            await self.init()
             
-            # データ更新タスクの開始
-            update_task = asyncio.create_task(self.update_data())
-            
-            # サーバーを実行し続ける
-            while True:
-                await asyncio.sleep(1)
+            # サーバーの起動
+            async with self.server:
+                self.logger.info(f"サーバーを起動しました: {self.server_config['endpoint']}")
+                
+                # データ更新タスクの開始
+                update_task = asyncio.create_task(self.update_data())
+                
+                # サーバーを実行し続ける
+                while True:
+                    await asyncio.sleep(1)
+        except Exception as e:
+            self.logger.error(f"サーバー起動中にエラーが発生しました: {e}")
+            raise
                 
     def stop(self):
         """サーバーの停止"""

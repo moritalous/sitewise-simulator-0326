@@ -41,6 +41,8 @@ class DataGenerator:
             for sensor_id, sensor_config in device_config["sensors"].items():
                 if sensor_config.get("type") == "boolean":
                     self.last_values[device_id][sensor_id] = sensor_config["normal_value"]
+                elif "increment_min" in sensor_config:
+                    self.last_values[device_id][sensor_id] = 0
                 else:
                     normal_min = sensor_config["normal_min"]
                     normal_max = sensor_config["normal_max"]

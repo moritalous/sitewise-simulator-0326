@@ -7,9 +7,9 @@ import signal
 import sys
 from typing import Optional
 
-from src.config_loader import load_config
-from src.data_generator import DataGenerator
-from src.opcua_server import OpcUaServer
+from config_loader import load_config
+from data_generator import DataGenerator
+from opcua_server import OpcUaServer
 
 
 def setup_logging():
