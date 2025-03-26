@@ -1,6 +1,6 @@
 server:
   endpoint: "opc.tcp://0.0.0.0:4840"
-  name: "Factory Simulator OPC-UA Server"
+  name: "FactorySimulatorOpcUaServer"
   uri: "urn:factory:simulator"
   update_interval: 1.0  # データ更新間隔（秒）
   client_update_interval: 5.0  # クライアント更新間隔（秒）
@@ -14,10 +14,10 @@ failure_simulation:
 devices:
   # 生産ライン1
   conveyor_belt:
-    name: "コンベアベルト"
+    name: "ConveyorBelt"
     sensors:
       speed:
-        name: "速度"
+        name: "Speed"
         unit: "m/s"
         min: 0.5
         max: 2.0
@@ -26,7 +26,7 @@ devices:
         failure_min: 0.0
         failure_max: 0.3
       motor_temperature:
-        name: "モーター温度"
+        name: "MotorTemperature"
         unit: "°C"
         min: 20.0
         max: 120.0
@@ -35,7 +35,7 @@ devices:
         failure_min: 85.0
         failure_max: 120.0
       current:
-        name: "電流値"
+        name: "Current"
         unit: "A"
         min: 0.0
         max: 30.0
@@ -44,16 +44,16 @@ devices:
         failure_min: 25.0
         failure_max: 30.0
       status:
-        name: "稼働状態"
+        name: "Status"
         type: "boolean"
         normal_value: true
         failure_value: false
 
   press_machine:
-    name: "プレス機"
+    name: "PressMachine"
     sensors:
       pressure:
-        name: "圧力"
+        name: "Pressure"
         unit: "kPa"
         min: 0.0
         max: 5000.0
@@ -62,7 +62,7 @@ devices:
         failure_min: 4500.0
         failure_max: 5000.0
       hydraulic_temperature:
-        name: "油圧システム温度"
+        name: "HydraulicSystemTemperature"
         unit: "°C"
         min: 20.0
         max: 100.0
@@ -71,7 +71,7 @@ devices:
         failure_min: 80.0
         failure_max: 100.0
       cycle_count:
-        name: "サイクル数"
+        name: "CycleCount"
         unit: "count"
         min: 0
         max: 1000000
@@ -79,16 +79,16 @@ devices:
         increment_max: 1
         failure_increment: 0
       status:
-        name: "稼働状態"
+        name: "Status"
         type: "boolean"
         normal_value: true
         failure_value: false
 
   welding_robot:
-    name: "溶接ロボット"
+    name: "WeldingRobot"
     sensors:
       position_x:
-        name: "アーム位置X"
+        name: "ArmPositionX"
         unit: "mm"
         min: 0.0
         max: 1000.0
@@ -97,7 +97,7 @@ devices:
         failure_min: 950.0
         failure_max: 1000.0
       position_y:
-        name: "アーム位置Y"
+        name: "ArmPositionY"
         unit: "mm"
         min: 0.0
         max: 1000.0
@@ -106,7 +106,7 @@ devices:
         failure_min: 950.0
         failure_max: 1000.0
       position_z:
-        name: "アーム位置Z"
+        name: "ArmPositionZ"
         unit: "mm"
         min: 0.0
         max: 500.0
@@ -115,7 +115,7 @@ devices:
         failure_min: 480.0
         failure_max: 500.0
       welding_current:
-        name: "溶接電流"
+        name: "WeldingCurrent"
         unit: "A"
         min: 0.0
         max: 500.0
@@ -124,7 +124,7 @@ devices:
         failure_min: 400.0
         failure_max: 500.0
       welding_temperature:
-        name: "溶接温度"
+        name: "WeldingTemperature"
         unit: "°C"
         min: 0.0
         max: 2000.0
@@ -133,17 +133,17 @@ devices:
         failure_min: 1800.0
         failure_max: 2000.0
       status:
-        name: "稼働状態"
+        name: "Status"
         type: "boolean"
         normal_value: true
         failure_value: false
 
   # 生産ライン2
   cnc_machine:
-    name: "CNC工作機械"
+    name: "CNCMachine"
     sensors:
       rotation_speed:
-        name: "回転速度"
+        name: "RotationSpeed"
         unit: "rpm"
         min: 0.0
         max: 10000.0
@@ -152,7 +152,7 @@ devices:
         failure_min: 9000.0
         failure_max: 10000.0
       tool_temperature:
-        name: "切削工具温度"
+        name: "ToolTemperature"
         unit: "°C"
         min: 20.0
         max: 200.0
@@ -161,7 +161,7 @@ devices:
         failure_min: 150.0
         failure_max: 200.0
       vibration:
-        name: "振動レベル"
+        name: "VibrationLevel"
         unit: "mm/s²"
         min: 0.0
         max: 50.0
@@ -170,16 +170,16 @@ devices:
         failure_min: 30.0
         failure_max: 50.0
       status:
-        name: "稼働状態"
+        name: "Status"
         type: "boolean"
         normal_value: true
         failure_value: false
 
   painting_booth:
-    name: "塗装ブース"
+    name: "PaintingBooth"
     sensors:
       temperature:
-        name: "温度"
+        name: "Temperature"
         unit: "°C"
         min: 15.0
         max: 40.0
@@ -188,7 +188,7 @@ devices:
         failure_min: 30.0
         failure_max: 40.0
       humidity:
-        name: "湿度"
+        name: "Humidity"
         unit: "%"
         min: 30.0
         max: 90.0
@@ -197,7 +197,7 @@ devices:
         failure_min: 75.0
         failure_max: 90.0
       paint_flow:
-        name: "塗料流量"
+        name: "PaintFlow"
         unit: "L/min"
         min: 0.0
         max: 10.0
@@ -206,17 +206,17 @@ devices:
         failure_min: 0.0
         failure_max: 0.5
       status:
-        name: "稼働状態"
+        name: "Status"
         type: "boolean"
         normal_value: true
         failure_value: false
 
   # 環境モニタリング
   environment_sensor:
-    name: "工場環境センサー"
+    name: "FactoryEnvironmentSensor"
     sensors:
       room_temperature:
-        name: "室温"
+        name: "RoomTemperature"
         unit: "°C"
         min: 10.0
         max: 40.0
@@ -225,7 +225,7 @@ devices:
         failure_min: 35.0
         failure_max: 40.0
       humidity:
-        name: "湿度"
+        name: "Humidity"
         unit: "%"
         min: 20.0
         max: 90.0
@@ -234,7 +234,7 @@ devices:
         failure_min: 80.0
         failure_max: 90.0
       co2:
-        name: "CO2濃度"
+        name: "CO2Level"
         unit: "ppm"
         min: 300.0
         max: 2000.0
@@ -243,7 +243,7 @@ devices:
         failure_min: 1500.0
         failure_max: 2000.0
       noise:
-        name: "騒音レベル"
+        name: "NoiseLevel"
         unit: "dB"
         min: 40.0
         max: 100.0
@@ -253,10 +253,10 @@ devices:
         failure_max: 100.0
 
   power_monitoring:
-    name: "電力モニタリング"
+    name: "PowerMonitoring"
     sensors:
       power_consumption:
-        name: "総消費電力"
+        name: "TotalPowerConsumption"
         unit: "kW"
         min: 50.0
         max: 500.0
@@ -265,7 +265,7 @@ devices:
         failure_min: 400.0
         failure_max: 500.0
       voltage:
-        name: "電圧"
+        name: "Voltage"
         unit: "V"
         min: 180.0
         max: 250.0
@@ -274,7 +274,7 @@ devices:
         failure_min: 180.0
         failure_max: 190.0
       power_factor:
-        name: "力率"
+        name: "PowerFactor"
         unit: "%"
         min: 70.0
         max: 100.0
