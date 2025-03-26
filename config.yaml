@@ -1,0 +1,284 @@
+server:
+  endpoint: "opc.tcp://0.0.0.0:4840"
+  name: "Factory Simulator OPC-UA Server"
+  uri: "urn:factory:simulator"
+  update_interval: 1.0  # データ更新間隔（秒）
+  client_update_interval: 5.0  # クライアント更新間隔（秒）
+
+failure_simulation:
+  enabled: true
+  mean_time_between_failures: 3600  # 平均故障間隔（秒）
+  failure_duration_min: 300  # 最小故障継続時間（秒）
+  failure_duration_max: 900  # 最大故障継続時間（秒）
+
+devices:
+  # 生産ライン1
+  conveyor_belt:
+    name: "コンベアベルト"
+    sensors:
+      speed:
+        name: "速度"
+        unit: "m/s"
+        min: 0.5
+        max: 2.0
+        normal_min: 0.8
+        normal_max: 1.5
+        failure_min: 0.0
+        failure_max: 0.3
+      motor_temperature:
+        name: "モーター温度"
+        unit: "°C"
+        min: 20.0
+        max: 120.0
+        normal_min: 40.0
+        normal_max: 65.0
+        failure_min: 85.0
+        failure_max: 120.0
+      current:
+        name: "電流値"
+        unit: "A"
+        min: 0.0
+        max: 30.0
+        normal_min: 10.0
+        normal_max: 15.0
+        failure_min: 25.0
+        failure_max: 30.0
+      status:
+        name: "稼働状態"
+        type: "boolean"
+        normal_value: true
+        failure_value: false
+
+  press_machine:
+    name: "プレス機"
+    sensors:
+      pressure:
+        name: "圧力"
+        unit: "kPa"
+        min: 0.0
+        max: 5000.0
+        normal_min: 3000.0
+        normal_max: 4000.0
+        failure_min: 4500.0
+        failure_max: 5000.0
+      hydraulic_temperature:
+        name: "油圧システム温度"
+        unit: "°C"
+        min: 20.0
+        max: 100.0
+        normal_min: 40.0
+        normal_max: 60.0
+        failure_min: 80.0
+        failure_max: 100.0
+      cycle_count:
+        name: "サイクル数"
+        unit: "count"
+        min: 0
+        max: 1000000
+        increment_min: 1
+        increment_max: 1
+        failure_increment: 0
+      status:
+        name: "稼働状態"
+        type: "boolean"
+        normal_value: true
+        failure_value: false
+
+  welding_robot:
+    name: "溶接ロボット"
+    sensors:
+      position_x:
+        name: "アーム位置X"
+        unit: "mm"
+        min: 0.0
+        max: 1000.0
+        normal_min: 100.0
+        normal_max: 900.0
+        failure_min: 950.0
+        failure_max: 1000.0
+      position_y:
+        name: "アーム位置Y"
+        unit: "mm"
+        min: 0.0
+        max: 1000.0
+        normal_min: 100.0
+        normal_max: 900.0
+        failure_min: 950.0
+        failure_max: 1000.0
+      position_z:
+        name: "アーム位置Z"
+        unit: "mm"
+        min: 0.0
+        max: 500.0
+        normal_min: 50.0
+        normal_max: 450.0
+        failure_min: 480.0
+        failure_max: 500.0
+      welding_current:
+        name: "溶接電流"
+        unit: "A"
+        min: 0.0
+        max: 500.0
+        normal_min: 200.0
+        normal_max: 300.0
+        failure_min: 400.0
+        failure_max: 500.0
+      welding_temperature:
+        name: "溶接温度"
+        unit: "°C"
+        min: 0.0
+        max: 2000.0
+        normal_min: 1200.0
+        normal_max: 1600.0
+        failure_min: 1800.0
+        failure_max: 2000.0
+      status:
+        name: "稼働状態"
+        type: "boolean"
+        normal_value: true
+        failure_value: false
+
+  # 生産ライン2
+  cnc_machine:
+    name: "CNC工作機械"
+    sensors:
+      rotation_speed:
+        name: "回転速度"
+        unit: "rpm"
+        min: 0.0
+        max: 10000.0
+        normal_min: 5000.0
+        normal_max: 8000.0
+        failure_min: 9000.0
+        failure_max: 10000.0
+      tool_temperature:
+        name: "切削工具温度"
+        unit: "°C"
+        min: 20.0
+        max: 200.0
+        normal_min: 50.0
+        normal_max: 120.0
+        failure_min: 150.0
+        failure_max: 200.0
+      vibration:
+        name: "振動レベル"
+        unit: "mm/s²"
+        min: 0.0
+        max: 50.0
+        normal_min: 0.5
+        normal_max: 10.0
+        failure_min: 30.0
+        failure_max: 50.0
+      status:
+        name: "稼働状態"
+        type: "boolean"
+        normal_value: true
+        failure_value: false
+
+  painting_booth:
+    name: "塗装ブース"
+    sensors:
+      temperature:
+        name: "温度"
+        unit: "°C"
+        min: 15.0
+        max: 40.0
+        normal_min: 20.0
+        normal_max: 25.0
+        failure_min: 30.0
+        failure_max: 40.0
+      humidity:
+        name: "湿度"
+        unit: "%"
+        min: 30.0
+        max: 90.0
+        normal_min: 45.0
+        normal_max: 55.0
+        failure_min: 75.0
+        failure_max: 90.0
+      paint_flow:
+        name: "塗料流量"
+        unit: "L/min"
+        min: 0.0
+        max: 10.0
+        normal_min: 2.0
+        normal_max: 5.0
+        failure_min: 0.0
+        failure_max: 0.5
+      status:
+        name: "稼働状態"
+        type: "boolean"
+        normal_value: true
+        failure_value: false
+
+  # 環境モニタリング
+  environment_sensor:
+    name: "工場環境センサー"
+    sensors:
+      room_temperature:
+        name: "室温"
+        unit: "°C"
+        min: 10.0
+        max: 40.0
+        normal_min: 18.0
+        normal_max: 25.0
+        failure_min: 35.0
+        failure_max: 40.0
+      humidity:
+        name: "湿度"
+        unit: "%"
+        min: 20.0
+        max: 90.0
+        normal_min: 40.0
+        normal_max: 60.0
+        failure_min: 80.0
+        failure_max: 90.0
+      co2:
+        name: "CO2濃度"
+        unit: "ppm"
+        min: 300.0
+        max: 2000.0
+        normal_min: 400.0
+        normal_max: 800.0
+        failure_min: 1500.0
+        failure_max: 2000.0
+      noise:
+        name: "騒音レベル"
+        unit: "dB"
+        min: 40.0
+        max: 100.0
+        normal_min: 60.0
+        normal_max: 75.0
+        failure_min: 90.0
+        failure_max: 100.0
+
+  power_monitoring:
+    name: "電力モニタリング"
+    sensors:
+      power_consumption:
+        name: "総消費電力"
+        unit: "kW"
+        min: 50.0
+        max: 500.0
+        normal_min: 100.0
+        normal_max: 300.0
+        failure_min: 400.0
+        failure_max: 500.0
+      voltage:
+        name: "電圧"
+        unit: "V"
+        min: 180.0
+        max: 250.0
+        normal_min: 210.0
+        normal_max: 230.0
+        failure_min: 180.0
+        failure_max: 190.0
+      power_factor:
+        name: "力率"
+        unit: "%"
+        min: 70.0
+        max: 100.0
+        normal_min: 90.0
+        normal_max: 98.0
+        failure_min: 70.0
+        failure_max: 80.0
